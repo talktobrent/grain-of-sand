@@ -46,15 +46,16 @@ def convert(query):
         query = here.get('https://geocoder.api.here.com/6.2/search.json?searchtext=' + query)
         print(query.url)
         query = query.json()
+        coord = {}
         try:
             query = query.pop("Response").pop("View")[0].pop("Result")[0]
             if query.get("MatchQuality").get("Name"):
-                address = query.get("Place").pop("Name")
+                coord.update({"Name": query.get("Place").pop("Name")})
                 query = query.get("Place").pop("Locations")[0]
             else:
                 query = query.pop("Location")
-                address = query.pop("Address").pop("Label")
-            coord = query.pop("DisplayPosition")
+            address = query.pop("Address").pop("Label")
+            coord.update(**query.pop("DisplayPosition"))
         except:
             return ("bad")
         data = {"coords": "{},{}".format(coord.get("Latitude"), coord.get("Longitude"))}
