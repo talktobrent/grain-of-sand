@@ -1,0 +1,22 @@
+header {
+	height: 50px;
+	text-align: center;
+}
+
+html, body {
+	height: 100%;
+	background-color: black;
+}
+
+.search-container {
+	display: inline-block;
+}
+
+#map {
+	background: grey;
+	width: 65%;
+	height: 100%;
+	float: right;
+	display: inline-block;
+	margin: -8px;
+}
