@@ -10,13 +10,107 @@ html, body {
 
 .search-container {
 	display: inline-block;
+	width: 100%;
 }
 
 #map {
 	background: grey;
-	width: 65%;
+	width: 100%;
 	height: 100%;
 	float: right;
 	display: inline-block;
-	margin: -8px;
+}
+
+.signin {
+	display: block;
+}
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  width: 40%;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  width: 60%;
+}
+
+#searchbox {
+	width: 80%;
+	height: 40px;
+	padding: 4px;
+	display: inline-block;
+	border: none;
+}
+
+#search {
+	display: inline-block;
+	height: 40px;
+}
+
+.history {
+	display: inline-block;
+	bottom: 0;
+	height: 60%;
+	width: 100%;
+	overflow-y: auto;
+	background-color: gray
+}
+article.mapped {
+	display: block;
+	height: 40px;
+	width: 100%;
+	background-color: white;
+	text-align: center;
+}
+
+article.mapped>p {
+	display: inline-block;
+	width: 90%;
+	height: 100%;
+	white-space: nowrap;
+	overflow-x: hidden;
+}
+
+article:hover {
+	opacity: 1.0 !important;
+	color: black;
+}
+
+.mapped:first-child>button {
+	background-color: lightcyan;
+	color: black;
+}
+
+.mapped:first-child {
+	color: black;
+}
+
+button.mapped {
+	display: inline-block;
+	float: right;
+	height: 100%;
+	width: 10%;
+	border: none;
+	background-color: transparent;
+	background-color: lightcyan;
+}
+
+.mapped {
+	color: darkgray;
+}
+button:focus {
+	outline: 0;
+}
+
+button:hover {
+	color: black;
 }
