@@ -78,14 +78,20 @@ def convert(query):
 
     # sends map to server
 
-    map = Map(Address=address, Words=w, Latitude=coord.get('Latitude'), Longitude=coord.get('Longitude'))
+    old = Map.query.get(w)
+    if not old:
+        map = Map(Address=address, Words=w, Latitude=coord.get('Latitude'), Longitude=coord.get('Longitude'))
+    else:
+        map = old
     if userId:
         for x in User.query.all():
             if x.id == userId:
-                map.append(x)
+                map.users_rel.append(x)
                 break
-    db.session.add(map)
-    db.session.commit()
+    if not old:
+        db.session.add(map)
+    if not old or old and userId:
+        db.session.commit()
 
     # end db
 
@@ -123,9 +129,10 @@ def verify():
 
         # sends user to database
 
-        valid_user = User(id=userid, email=email, name=name)
-        db.session.add(valid_user)
-        db.session.commit()
+        if userid not in [x.id for x in User.query.all()]:
+            valid_user = User(id=userid, email=email, name=name)
+            db.session.add(valid_user)
+            db.session.commit()
 
         resp = make_response(jsonify("OK"), 201)
         resp.set_cookie('userId', str(userid))

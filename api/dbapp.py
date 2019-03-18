@@ -26,6 +26,7 @@ class User(db.Model):
   created_at = db.Column(db.DateTime, default=datetime.utcnow(), nullable=False)
   name = db.Column(db.String(128), nullable=True)
   email = db.Column(db.String(128), nullable=True)
+  maps = db.relationship("Map", secondary=user_wordmaps)
 #  img_link = db.Column(db.String(2056))
   # maps = db.relationship("Map", secondary=user_wordmaps)
   # Maps = db.relationship('Map', back_populates='Map', viewonly=False)
