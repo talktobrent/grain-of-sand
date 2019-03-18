@@ -7,8 +7,8 @@ import re
 import requests
 from google.oauth2 import id_token
 from google.auth.transport import requests as grequests
+from dbapp import app, db, User, Map, user_wordmaps
 
-app = Flask(__name__)
 
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -75,6 +75,20 @@ def convert(query):
         w = query.get("words")
 
     coord.update({"Address": address, "Words": '///' + w, "WQ": wq})
+
+    # sends map to server
+
+    map = Map(Address=address, Words=w, Latitude=coord.get('Latitude'), Longitude=coord.get('Longitude'))
+    if userId:
+        for x in User.query.all():
+            if x.id == userId:
+                map.append(x)
+                break
+    db.session.add(map)
+    db.session.commit()
+
+    # end db
+
     return jsonify(coord)
 
 @app.route('/api/verify', methods=['POST'])
@@ -103,12 +117,21 @@ def verify():
 
     # ID token is valid. Get the user's Google Account ID from the decoded token.
         userid = idinfo['sub']
+        print(type(userid))
         email = idinfo['email']
-        picture = idinfo['picture']
         name = idinfo['name']
+
+        # sends user to database
+
+        valid_user = User(id=userid, email=email, name=name)
+        db.session.add(valid_user)
+        db.session.commit()
 
         resp = make_response(jsonify("OK"), 201)
         resp.set_cookie('userId', str(userid))
+
+        # end db
+
         print (resp)
         return (resp)
 

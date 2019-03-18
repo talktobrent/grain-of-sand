@@ -15,14 +15,15 @@ db = SQLAlchemy(app)
 
 
 user_wordmaps = db.Table("user_wordmaps", db.Model.metadata,
-                        db.Column('user_id', db.Integer, db.ForeignKey('Users.id')),
+                        db.Column('user_id', db.String(128), db.ForeignKey('Users.id')),
                         db.Column('words_id', db.String(128), db.ForeignKey('Maps.Words'))
                         # db.UniqueConstraint('user_id', 'words_id')
                         )
 
 class User(db.Model):
   __tablename__ = 'Users'
-  id = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.String(128), primary_key=True)
+  created_at = db.Column(db.DateTime, default=datetime.utcnow(), nullable=False)
   name = db.Column(db.String(128), nullable=True)
   email = db.Column(db.String(128), nullable=True)
 #  img_link = db.Column(db.String(2056))
@@ -34,6 +35,7 @@ class User(db.Model):
 class Map(db.Model):
   __tablename__ = 'Maps'
   id = db.Column(db.Integer, nullable=True)
+  created_at = db.Column(db.DateTime, default=datetime.utcnow(), nullable=False)
   Address = db.Column(db.String(128), nullable=True)
   Latitude = db.Column(db.Integer, nullable=True, default=0)
   Longitude = db.Column(db.Integer, nullable=True, default=0)
