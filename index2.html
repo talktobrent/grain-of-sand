@@ -24,21 +24,23 @@
 </head>
 
 <body>
+    <header>
+        <div class="search-container">
+          <input id="searchbox" type="text" placeholder="what3words, address, or landmark" name="search">
+          <button id="search" type="button">Submit</button>
+        </div>
+    
+        <section class="signin">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <button onclick="signOut()" id="sign-out">SignOut</button>
+            <img id="pic" class="img-circle"/>
+          </section>
+    
+    </header>
 <div class="split left">
-  <div class="search-container">
-      <input id="searchbox" type="text" placeholder="what3words, address, or landmark" name="search">
-      <button id="search" type="button">Submit</button>
-  </div>
-    <section class="signin">
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <div class="data">
-    <p>Profile Details</p>
-    <img id="pic" class="img-circle" width="100" height="100"/>
-    <p>Email Address</p>
-    <p id="email" class="alert alert-secondary"></p>
-    <button onclick="signOut()" class="btn btn-secondary">SignOut</button>
-  </div>
-  </section>
+ 
+
+
   <section class="history">
   </section>
 </div>

@@ -41,17 +41,14 @@ function plot (data) {
   }
   $('section.history').prepend(
     $('<article/>')
-      .attr('class', 'mapped')
       .data(data)
-      .css('opacity', '1')
+      .addClass('current')
       .append([
         '<p>' + text + '</p>',
         $('<button/>')
-          .attr('class', 'mapped')
           .text(button)
           .click(function () {
             $(this).parent().find('p').text(function () {
-              console.log($(this).parent().data());
               if ($(this).parent().data().WQ) {
                 $(this).siblings('button').text('@');
                 $(this).parent().data().WQ = false;
@@ -65,6 +62,13 @@ function plot (data) {
           })
       ])
   );
- // $('article').slice(1).css('opacity', '-=0.1')
+  $('article').click(function () {
+    $(this).addClass('current')
+    let coords = { lat: $(this).data().Latitude, lng: $(this).data().Longitude }
+    map.setCenter(coords);
+    map.setZoom(12);
+    $('article').not($(this)).removeClass('current')
+  })
+  $('article').slice(1).removeClass('current')
   return coords;
 }

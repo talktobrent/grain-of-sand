@@ -1,14 +1,17 @@
 
-//initialize search history array
+//initialize session search history array, default cookie and user key
 let history = []
-key = 'anon'
+signedIn = false
 
 function signOut () {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     alert('You have been successfully signed out');
-    $('.g-signin2').css('display', 'block');
-    key = 'anon'
+    $('.g-signin2').css('display', 'inline-block');
+    $('#pic').css('display', 'none')
+    $('#sign-out').css('display', 'none')
+    delete key
+    signedIn = false
     history = []
     $('article').remove()
   });
@@ -22,9 +25,9 @@ function onSignIn (googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   $('.g-signin2').css('display', 'none');
-  $('.data').css('display', 'block');
+  $('#pic').css('display', 'inline-block')
+  $('#sign-out').css('display', 'inline-block')
   $('#pic').attr('src', profile.getImageUrl());
-  $('#email').text(profile.getEmail());
   var id_token = googleUser.getAuthResponse().id_token;
   console.log(id_token);
   fetch(url, {
@@ -38,7 +41,8 @@ function onSignIn (googleUser) {
       if (response.status != 201) {
         alert('error: invalid login');
       } else {
-        key = profile.getId().toString()
+        signedIn = true
+        key = profile.getId().toString() 
         let old = localStorage.getItem(key)
         if (old) {
           old = JSON.parse(old)
@@ -58,3 +62,26 @@ function onSignIn (googleUser) {
       }
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

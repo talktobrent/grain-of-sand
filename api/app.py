@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ api module """
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 import re
 import requests
@@ -24,6 +24,10 @@ here.params = {"app_id": "7DZj4FZSRWbx6FTL8JER",
 @app.route('/api/<query>', methods=['GET'])
 def convert(query):
     """ tests query and converts """
+
+    userId = request.cookies.get('userId')
+    print(userId)
+
     if re.match("^\w*\.\w*\.\w*$", query):
         wq = True
         string = query
@@ -78,36 +82,41 @@ def verify():
     token = request.get_json(silent=True)
     print (token)
     print (type(token))
-    print('EXTRA LINE') 
+    print('EXTRA LINE')
 
-    # try:
+    try:
     # Specify the CLIENT_ID of the app that accesses the backend:
-    idinfo = id_token.verify_oauth2_token(token, grequests.Request(), '550246531979-58rjevftor5s8knchrflgi2fevn04ud6.apps.googleusercontent.com')
-    print('TEST')
-    print (idinfo)
+        idinfo = id_token.verify_oauth2_token(token, grequests.Request(), '550246531979-58rjevftor5s8knchrflgi2fevn04ud6.apps.googleusercontent.com')
+        print (idinfo)
 
     # Or, if multiple clients access the backend server:
     # idinfo = id_token.verify_oauth2_token(token, requests.Request())
     # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
     #     raise ValueError('Could not verify audience.')
 
-    if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-        raise ValueError('Wrong issuer.')
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Wrong issuer.')
 
     # If auth request is from a G Suite domain:
     # if idinfo['hd'] != GSUITE_DOMAIN_NAME:
     #     raise ValueError('Wrong hosted domain.')
 
     # ID token is valid. Get the user's Google Account ID from the decoded token.
-    userid = idinfo['sub']
-    email = idinfo['email']
-    picture = idinfo['picture']
-    name = idinfo['name']
-    return (jsonify("OK"), 201)
-    # except ValueError:
+        userid = idinfo['sub']
+        email = idinfo['email']
+        picture = idinfo['picture']
+        name = idinfo['name']
+
+        resp = make_response(jsonify("OK"), 201)
+        resp.set_cookie('userId', str(userid))
+        print (resp)
+        return (resp)
+
+    except ValueError as e:
+        print(e)
     #     # Invalid token
-    #     return jsonify("bad"), 400
+        return jsonify("bad"), 400
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="localhost", port=5000)
