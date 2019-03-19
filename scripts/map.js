@@ -18,20 +18,6 @@ var map = new H.Map(document.getElementById('map'),
     pixelRatio: pixelRatio
   });
 
-  
-  // Add 3Word Bubbles
-  map.addEventListener('pointerup', function (evt) {
-    console.log("Is it working?")
-    console.log(evt);
-    var bubble = new H.ui.InfoBubble(evt.target.getPosition(), {
-      content: evt.target.getData()
-    })
-    ui.addBubble(bubble);
-  }, false)
-
-  // Set the Base Layer for Maps
-  map.setBaseLayer(defaultLayers.satellite.traffic);
-
 // Step 3: make the map interactive
 // MapEvents enables the event system
 // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
@@ -39,6 +25,19 @@ var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
 // Create the default UI components
 var ui = H.ui.UI.createDefault(map, defaultLayers);
+var group = new H.map.Group()
+map.addObject(group);
+
+  // Add 3Word Bubbles
+  group.addEventListener('pointerdown', function (evt) {
+    console.log("Is it working?")
+    console.log(evt);
+    bubble = new H.ui.InfoBubble(evt.target.getPosition(), {
+      content: '<p class="bubble">' + evt.target.getData() + '</p>'
+    })
+    ui.addBubble(bubble);
+  }, false)
+
 
 
 // plot markers based on search history
@@ -46,7 +45,7 @@ function plot (data) {
   let coords = { lat: data.Latitude, lng: data.Longitude };
   let marker = new H.map.Marker(coords);
   marker.setData(data.Words)
-  map.addObject(marker);
+  group.addObject(marker);
   if (data.WQ) {
     var text = data.Address;
     var button = '///';
@@ -59,11 +58,10 @@ function plot (data) {
   console.log(splitwords[0])
   console.log(splitwords[1])
 
-  
-
   $('section.history').prepend(
     $('<article/>')
       .data(data)
+      .attr("id", data.query.split(' ').join('_'))
       .addClass('current')
       .append([
         '<p>' + text + '</p>',
@@ -85,6 +83,7 @@ function plot (data) {
       ])
   );
   $('article').click(function () {
+    console.log($(this))
     $(this).addClass('current')
     let coords = { lat: $(this).data().Latitude, lng: $(this).data().Longitude }
     map.setCenter(coords);

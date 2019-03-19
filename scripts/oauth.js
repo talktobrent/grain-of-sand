@@ -48,8 +48,9 @@ function onSignIn (googleUser) {
         let old = localStorage.getItem(key)
         console.log(old)
         if (old && JSON.parse(old).length) {
-          old = JSON.parse(old)
-          old = old.concat(history)
+          old = JSON.parse(old);
+          old = old.concat(history);
+          old = Array.from(new Set(old));
           localStorage.setItem(key, JSON.stringify(old))
           history = old
           $('article').remove()
