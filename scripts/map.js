@@ -18,6 +18,20 @@ var map = new H.Map(document.getElementById('map'),
     pixelRatio: pixelRatio
   });
 
+  
+  // Add 3Word Bubbles
+  map.addEventListener('pointerup', function (evt) {
+    console.log("Is it working?")
+    console.log(evt);
+    var bubble = new H.ui.InfoBubble(evt.target.getPosition(), {
+      content: evt.target.getData()
+    })
+    ui.addBubble(bubble);
+  }, false)
+
+  // Set the Base Layer for Maps
+  map.setBaseLayer(defaultLayers.satellite.traffic);
+
 // Step 3: make the map interactive
 // MapEvents enables the event system
 // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
@@ -31,6 +45,7 @@ var ui = H.ui.UI.createDefault(map, defaultLayers);
 function plot (data) {
   let coords = { lat: data.Latitude, lng: data.Longitude };
   let marker = new H.map.Marker(coords);
+  marker.setData(data.Words)
   map.addObject(marker);
   if (data.WQ) {
     var text = data.Address;
@@ -39,6 +54,13 @@ function plot (data) {
     var text = data.Words;
     var button = '@';
   }
+
+  splitwords = data.Words.slice(3).split(".")
+  console.log(splitwords[0])
+  console.log(splitwords[1])
+
+  
+
   $('section.history').prepend(
     $('<article/>')
       .data(data)
