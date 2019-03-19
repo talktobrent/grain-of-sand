@@ -10,6 +10,9 @@
   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
   <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
 
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
@@ -27,12 +30,17 @@
 </head>
 
 <body>
+
+
+
+
     <header>
         <div class="search-container">
-<input id="searchbox" type="text" placeholder="what3words, address, or landmark" name="search">
-          <button id="search" type="button">Submit</button>
+      <input id="searchbox" class="controls"" type="text" placeholder="what3words, address, or landmark" name="search">
+          <button id="search" type="button"><i class="fas fa-search"></i></button>
         </div>
     
+
         <section class="signin">
             <div class=signin_container>
               <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -50,13 +58,29 @@
           </section>
     
     </header>
-<div class="split left">
- 
+
+<nav class="nav">
+  <div class="split left">
+
+    <section class="history">
+    </section>
+
+    <div>
+      <button class="toggle_all">
+        Toggle
+      </button>
+    </div>
+
+    <div class="hamburger">
+      <span class="first-bar"></span>
+      <span class="second-bar"></span>
+      <span class="third-bar"></span>
+    </div>
+
+  </div>
+</nav>
 
 
-  <section class="history">
-  </section>
-</div>
 <div class="split right">
  <div id="map"></div>
 </div>
