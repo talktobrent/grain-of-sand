@@ -13,13 +13,17 @@ $(document).ready(function () {
     if (string) {
       $.getJSON('http://0.0.0.0:5000/api/' + string, function (data) {
         console.log(data);
-        history.push(data);
-        if (signedIn) {
-          localStorage.setItem(key, JSON.stringify(history));
+        if (data !== 'bad') {
+          history.push(data);
+          if (signedIn) {
+            localStorage.setItem(key, JSON.stringify(history));
+          }
+          let coords = plot(data);
+          map.setCenter(coords);
+          map.setZoom(12);
+        } else {
+          alert("Not Found");
         }
-        let coords = plot(data);
-        map.setCenter(coords);
-        map.setZoom(12);
       });
     }
   });

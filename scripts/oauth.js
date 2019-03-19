@@ -14,6 +14,8 @@ function signOut () {
     signedIn = false
     history = []
     $('article').remove()
+    console.log(group)
+    group.removeAll();
   });
 }
 
@@ -24,10 +26,6 @@ function onSignIn (googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  $('.g-signin2').css('display', 'none');
-  $('#pic').css('display', 'inline-block')
-  $('#sign-out').css('display', 'inline-block')
-  $('#pic').attr('src', profile.getImageUrl());
   var id_token = googleUser.getAuthResponse().id_token;
   console.log(id_token);
   fetch(url, {
@@ -42,9 +40,14 @@ function onSignIn (googleUser) {
         alert('error: invalid login');
       } else {
         signedIn = true
+        $('.g-signin2').css('display', 'none');
+        $('#pic').css('display', 'inline-block')
+        $('#sign-out').css('display', 'inline-block')
+        $('#pic').attr('src', profile.getImageUrl());
         key = profile.getId().toString() 
         let old = localStorage.getItem(key)
-        if (old) {
+        console.log(old)
+        if (old && JSON.parse(old).length) {
           old = JSON.parse(old)
           old = old.concat(history)
           localStorage.setItem(key, JSON.stringify(old))

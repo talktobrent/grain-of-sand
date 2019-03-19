@@ -62,9 +62,9 @@ section.signin {
 	float: right;
 }
 .split {
-  height: 100%;
   display: inline-block;
   position: fixed;
+  bottom: 0px;
   top: 50px;
 }
 
