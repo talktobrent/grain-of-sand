@@ -6,10 +6,11 @@
   <link rel="stylesheet" type="text/css" href="styles/main.css" />
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
+  
   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
   <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
@@ -28,14 +29,24 @@
 <body>
     <header>
         <div class="search-container">
-          <input id="searchbox" type="text" placeholder="what3words, address, or landmark" name="search">
+<input id="searchbox" type="text" placeholder="what3words, address, or landmark" name="search">
           <button id="search" type="button">Submit</button>
         </div>
     
         <section class="signin">
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <button onclick="signOut()" id="sign-out">SignOut</button>
-            <img id="pic" class="img-circle"/>
+            <div class=signin_container>
+              <div class="g-signin2" data-onsuccess="onSignIn"></div>
+              <button onclick="signOut()" id="sign-out">SignOut</button>
+              <img id="pic" class="img-circle"/>
+            </div>
+            <div class="tags_container">
+              <button class="btn btn1">button 1</button>
+              <button class="btn btn2">button 2</button>
+              <button class="btn btn3">button 3</button>
+              <button class="btn btn4">button 4</button>
+              <button class="btn btn5">button 5</button>
+              <button class="btn btn6">button 6</button>
+            </div>
           </section>
     
     </header>
