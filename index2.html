@@ -1,106 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <link rel="stylesheet" type="text/css" href="styles/main2.css" />
-    <meta charset="utf-8" />
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<head>
+  <!-- Required meta tags -->
+  <link rel="stylesheet" type="text/css" href="styles/main2.css" />
+  <meta charset="utf-8" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
-    />
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
-    <script
-      type="text/javascript"
-      src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
-    ></script>
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous" />
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta
-      name="google-signin-client_id"
-      content="550246531979-58rjevftor5s8knchrflgi2fevn04ud6.apps.googleusercontent.com"
-    />
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
 
-    <script src="scripts/main.js"></script>
-    <script src="scripts/oauth.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="550246531979-58rjevftor5s8knchrflgi2fevn04ud6.apps.googleusercontent.com" />
 
-    <title>Addr3ss</title>
-  </head>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/oauth.js"></script>
 
-  <body>
-    <header>
-      <section class="signin">
-        <div class="signin_container">
-          <div class="g-signin2" data-onsuccess="onSignIn"></div>
-          <button onclick="signOut()" id="sign-out">SignOut</button>
-          <img id="pic" class="img-circle" />
-        </div>
-        <div class="tags_container">
-          <button class="btn btn1">button 1</button>
-          <button class="btn btn2">button 2</button>
-          <button class="btn btn3">button 3</button>
-          <button class="btn btn4">button 4</button>
-          <button class="btn btn5">button 5</button>
-          <button class="btn btn6">button 6</button>
-        </div>
-      </section>
-    </header>
+  <title>Addr3ss</title>
+</head>
 
+<body>
+  <header>
+    <section class="signin">
+      <div class="signin_container">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <button onclick="signOut()" id="sign-out">SignOut</button>
 
-
-    <div class="split right">
-      <div id="map">
-        <div class="search-container">
-          <input id="searchbox" class="controls"" type="text"
-          placeholder="what3words, address, or landmark" name="search">
-          <button id="search" type="button">
-            <i class="fas fa-search"></i>
+          <button onclick="show_hide()" class="myButton">
+              <img id="pic" class="img-circle" />
           </button>
+
+        <div class="dropdown-container">
+          <div class="main__menu">
+
+            <div style="display: none" id="drop-content">
+                <div class="Dropdown-triangle"></div>
+                <a href="#">Profile</a>
+                <a href="#">About</a>
+                <a href="#">My Tags</a>
+                <a href="#" id="user__change">Settings</a>
+                <a href="#" id="user__change">SignOut</a>
+              </div>
+          </div>
         </div>
-        <nav class="nav">
-            <!-- <div class="split left"> -->
-              <section class="history"></section>
-      
-              <div>
-                <button class="toggle_all">
-                  Toggle
-                </button>
-              </div>
-      
-              <div class="hamburger">
-                <span class="first-bar"></span>
-                <span class="second-bar"></span>
-                <span class="third-bar"></span>
-              </div>
-            <!-- </div> -->
-          </nav>
+
+        
 
       </div>
-    </div>
-  </body>
-  <footer></footer>
+      <div class="tags_container">
+        <button class="btn btn1">button 1</button>
+        <button class="btn btn2">button 2</button>
+        <button class="btn btn3">button 3</button>
+        <button class="btn btn4">button 4</button>
+        <button class="btn btn5">button 5</button>
+        <button class="btn btn6">button 6</button>
+      </div>
+    </section>
+  </header>
 
-  <script src="scripts/map.js"></script>
+
+  <div class="split right">
+    <div id="map">
+      <div class="search-container">
+        <input id="searchbox" class="controls"" type=" text" placeholder="what3words, address, or landmark" name="search">
+        <button id="search" type="button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <nav class="nav">
+        <!-- <div class="split left"> -->
+        <section class="history"></section>
+
+        <div>
+          <button class="toggle_all">
+            Toggle
+          </button>
+        </div>
+
+        <div class="hamburger">
+          <span class="first-bar"></span>
+          <span class="second-bar"></span>
+          <span class="third-bar"></span>
+        </div>
+        <!-- </div> -->
+      </nav>
+
+    </div>
+  </div>
+</body>
+<footer></footer>
+
+<script src="scripts/map.js"></script>
+
 </html>
