@@ -17,9 +17,12 @@ body {
 }
 
 .search-container {
+	position: absolute;
 	display: inline-block;
 	width: 40%;
-	height: 100%;
+	top: 10px;
+	left: 10px;
+	z-index: 1;
 	box-sizing: border-box;
 }
 
@@ -60,11 +63,11 @@ p {
 }
 
 #map {
+	display: inline-block;
 	background: black;
 	width: 100%;
+	position: relative;
 	height: 100%;
-	float: right;
-	display: inline-block;
 }
 
 
@@ -76,7 +79,6 @@ section.signin {
 	float: right;
 }
 .split {
-  display: inline-block;
   position: fixed;
   bottom: 0px;
   top: 50px;
@@ -95,7 +97,7 @@ section.signin {
 }
 
 #searchbox {
-	width: 80%;
+	width: 85%;
 	height: 50px;
 	padding: 4px;
 	border: none;
@@ -108,7 +110,7 @@ section.signin {
 	/* border-radius: 3px; */
 	/* width: 100%; */
 	/* outline: 0 none; */
-	opacity: .8;
+	opacity: .9;
 	min-height: 36px;
 	font-size: 16px;
 	font-weight: 700;
@@ -157,14 +159,12 @@ article:hover:not(.current) {
 #search {
 	float: right;
 	display: inline-block;
-	height: 100%;
-	width: 20%;
+	height: 50px;
+	width: 15%;
 	border: none;
 	background-color: rgb(120, 200, 226);
 	color: black;
 	box-sizing: border-box;
-	font-family: Lato;
-	font-size: 20px;
 	/* transition: 4s; */
 }
 

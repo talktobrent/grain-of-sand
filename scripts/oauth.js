@@ -1,6 +1,7 @@
 
 //initialize session search history array, default cookie and user key
-let history = []
+myhistory = [];
+console.log(myhistory)
 signedIn = false
 
 function signOut () {
@@ -12,7 +13,7 @@ function signOut () {
     $('#sign-out').css('display', 'none')
     delete key
     signedIn = false
-    history = []
+    myhistory = [];
     $('article').remove()
     console.log(group)
     group.removeAll();
@@ -45,24 +46,28 @@ function onSignIn (googleUser) {
         $('#sign-out').css('display', 'inline-block')
         $('#pic').attr('src', profile.getImageUrl());
         key = profile.getId().toString() 
-        let old = localStorage.getItem(key)
+        old = localStorage.getItem(key)
         console.log(old)
         if (old && JSON.parse(old).length) {
           old = JSON.parse(old);
-          old = old.concat(history);
-          old = Array.from(new Set(old));
+          console.log(myhistory)
+          old = old.concat(myhistory);
           localStorage.setItem(key, JSON.stringify(old))
-          history = old
+          console.log(old)
+          myhistory = old
+          console.log(myhistory)
           $('article').remove()
-          for (let x of history) {
-            last = plot(x)
+          for (let x of myhistory) {
+            if (!$(`#${x.query.split(' ').join('_')}`).length) {
+              last = plot(x)
+            }
           }
           map.setCenter(last);
           map.setZoom(12);
         } else {
-          localStorage.setItem(key, JSON.stringify(history))
+          localStorage.setItem(key, JSON.stringify(myhistory))
         }
-        console.log(history)
+        console.log(myhistory)
       }
     });
 }

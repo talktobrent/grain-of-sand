@@ -1,19 +1,19 @@
 
 $(document).ready(function () {
-  console.log(history)
+  console.log(myhistory)
   $('input').on('keyup', function (e) {
     if (e.keyCode === 13) {
       $('#search').click();
     }
   });
   $('#search').click(function () {
-    console.log(history)
+    console.log(myhistory)
     console.log($('input').val());
     let string = $('input').val().trim();
     $('input').val('');
     past = null;
     if (string) {
-      for (let x of history) {
+      for (let x of myhistory) {
         if (x.query === string) {
           past = x;
           break;
@@ -35,17 +35,17 @@ $(document).ready(function () {
           console.log(data);
           if (data !== 'bad') {
             Object.assign(data, {"query": string})
-            history.push(data);
-            console.log(history)
+            myhistory.push(data);
+            console.log(myhistory)
             if (signedIn) {
-              localStorage.setItem(key, JSON.stringify(history));
+              localStorage.setItem(key, JSON.stringify(myhistory));
             }
             let coords = plot(data);
             map.setCenter(coords);
             map.setZoom(12);
           } else {
             alert("Not Found");
-            history.push({"query": string, Words: null});
+            myhistory.push({"query": string, Words: null});
           }
         })
       }
