@@ -37,7 +37,7 @@ def convert(query):
                 query = words.get('https://api.what3words.com/v2/autosuggest?count=1&addr=' + string).json()
                 query = query.get("suggestions")[0]
             except:
-                return ("bad")
+                return jsonify("Can't find those words!")
         w = query.get("words")
         coord = query.pop("geometry")
         data = {"prox": "{},{},500".format(coord.get("lat"), coord.get("lng")),
@@ -51,7 +51,7 @@ def convert(query):
             coord = query.pop("DisplayPosition")
             address = query.pop("Address").pop("Label")
         except:
-            return ("bad")
+            return jsonify("You are too far from civilization!")
     else:
         wq = False
         query = here.get('https://geocoder.api.here.com/6.2/search.json?searchtext=' + query)
@@ -69,7 +69,7 @@ def convert(query):
             address = name + query.pop("Address").pop("Label")
             coord.update(**query.pop("DisplayPosition"))
         except:
-            return ("bad")
+            return jsonify("Try a more specific location or address")
         data = {"coords": "{},{}".format(coord.get("Latitude"), coord.get("Longitude"))}
         query = words.get('https://api.what3words.com/v2/reverse', params=data).json()
         w = query.get("words")

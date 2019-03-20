@@ -64,6 +64,7 @@ function plot (data) {
       .attr("id", data.query.split(' ').join('_'))
       .addClass('current')
       .append([
+        '<div class="closer"></div>',
         '<p>' + text + '</p>',
         $('<button/>')
           .text(button)
@@ -85,7 +86,7 @@ function plot (data) {
   $('article').click(function () {
     console.log($(this))
     $(this).addClass('current')
-    let coords = { lat: $(this).data().Latitude, lng: $(this).data().Longitude }
+    let coords = { lat: $(this).data().Latitude, lng: $(this).data().Longitude - 0.075}
     map.setCenter(coords);
     map.setZoom(12);
     $('article').not($(this)).removeClass('current')

@@ -27,13 +27,13 @@ $(document).ready(function () {
           .addClass('current')
           .prependTo('section.history')
           $('article').not(`#${string.split(' ').join('_')}`).removeClass('current')
-          let coords = { lat: $(`#${string.split(' ').join('_')}`).data().Latitude, lng: $(`#${string.split(' ').join('_')}`).data().Longitude }
+          let coords = { lat: $(`#${string.split(' ').join('_')}`).data().Latitude, lng: $(`#${string.split(' ').join('_')}`).data().Longitude - 0.075 }
           map.setCenter(coords);
           map.setZoom(12);
       } else {
         $.getJSON('http://0.0.0.0:5000/api/' + string, function (data) {
           console.log(data);
-          if (data !== 'bad') {
+          if ($.type(data) !== "string") {
             Object.assign(data, {"query": string})
             myhistory.push(data);
             console.log(myhistory)
@@ -41,10 +41,12 @@ $(document).ready(function () {
               localStorage.setItem(key, JSON.stringify(myhistory));
             }
             let coords = plot(data);
+            coords.lng -= 0.075
+            console.log(coords)
             map.setCenter(coords);
             map.setZoom(12);
           } else {
-            alert("Not Found");
+            alert(data);
             myhistory.push({"query": string, Words: null});
           }
         })
@@ -52,7 +54,6 @@ $(document).ready(function () {
     }
   });
 });
-
 
 // Show hide menu
 function show_hide() {
@@ -85,4 +86,3 @@ function animateHamburgers() {
 }
 
 toggleNav();
-

@@ -62,6 +62,7 @@ function onSignIn (googleUser) {
               last = plot(x)
             }
           }
+          last.lng -= 0.075
           map.setCenter(last);
           map.setZoom(12);
         } else {

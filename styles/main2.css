@@ -123,11 +123,12 @@ section.signin {
 }
 
 .history {
-	position: relative;
+	position: absolute;
 	display: block;
-	botom: 0px;
+	bottom: 0px;
 	top: 0px;
 	left: 0px;
+	right: 0px;
 	overflow-y: auto;
 	background-color: transparent;
 }
@@ -143,9 +144,9 @@ article {
 
 article p {
 	display: inline-block;
-	width: 90%;
-	height: 100%;
-	white-space: nowrap;
+	width: 88%;
+	height: 100%; 
+	white-space: nowrap; 
 	overflow-x: hidden;
 }
 
@@ -236,50 +237,14 @@ article.current {
 	left: 10px;
 	right: 0px;
 	z-index: 1;
-	width: 40%;
+	width: 35%;
 }
 
-.myButton {
-	padding: 0;
-	font-size: 0;
+article div.closer {
+	display: inline-block;
+	height: 100%;
+	width: 2%;
 	border: none;
+	background-color: red;
+	float: left;
 }
-
-.signin_container {
-	float: right;
-}
-
-
-#drop-content {
-	position: absolute;
-	z-index: 1;
-	top: 52px;
-	right: 50px;
-	/* border-radius: 100%; */
-	/* border: 3px solid black; */
-}
-
-#drop-content a {
-	display: block;
-	font-size: 20px;
-	background: #53565d;
-	color: white;
-	text-decoration: none;
-	padding: 3px 30px;
-	margin-top: 0.5px;
-}
-
-.Dropdown-triangle {
-	/* display: inline-block; */
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid #53565d;
-	position: absolute;
-	top: 1px;
-	right: 24px;
-}
-
-.user__change {
-	background: black;
-}
-
