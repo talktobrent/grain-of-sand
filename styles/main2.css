@@ -19,7 +19,7 @@ body {
 .search-container {
 	position: absolute;
 	display: inline-block;
-	width: 40%;
+	width: 70%;
 	top: 10px;
 	left: 10px;
 	z-index: 1;
@@ -86,18 +86,18 @@ section.signin {
 
 /* Control the left side */
 .left {
-  width: 40%;
+	display: none;
+  width: 0%;
   left: 0px;
 }
 
 /* Control the right side */
 .right {
-  width: 60%;
-  right: 0px;
+  width: 100%;
 }
 
 #searchbox {
-	width: 85%;
+	width: 90%;
 	height: 50px;
 	padding: 4px;
 	border: none;
@@ -123,13 +123,13 @@ section.signin {
 }
 
 .history {
-	position: absolute;
+	position: relative;
 	display: block;
+	botom: 0px;
 	top: 0px;
-	height: 677px;
-	width: 100%;
+	left: 0px;
 	overflow-y: auto;
-	background-color: darkgray;
+	background-color: transparent;
 }
 article {
 	display: block;
@@ -160,7 +160,7 @@ article:hover:not(.current) {
 	float: right;
 	display: inline-block;
 	height: 50px;
-	width: 15%;
+	width: 10%;
 	border: none;
 	background-color: rgb(120, 200, 226);
 	color: black;
@@ -231,6 +231,10 @@ article.current {
 .nav {
 	position: absolute;
 	display: block;
-	top: 50px;
-	left: 5px;
+	top: 70px;
+	bottom: 10px;
+	left: 10px;
+	right: 0px;
+	z-index: 1;
+	width: 40%;
 }
