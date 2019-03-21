@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Lato:400,700');
+
+
 header {
 	height: 50px;
 	display: block;
@@ -203,7 +206,7 @@ article.current {
 	height: 100%;
 	overflow-x: auto;
 	white-space: nowrap;
-	/* background-image: url(https://i.imgur.com/QobbDaF.png); */
+
 }
 
 .btn {
@@ -212,16 +215,19 @@ article.current {
 	background: none;
 	padding: 10px 30px;
 	font-size: 20px;
-	font-family: "Lato";
+	font-family: Lato;
+	font-weight: 700;
 	cursor: pointer;
-	transition: 1s;
+	transition: 0.3s;
 	position: relative;
 	overflow: hidden;
+	height: 90%;
 }
 
 .btn:hover {
-	color: #b2a17c;
-	border: 1px solid #b2a17c;
+	color: black;
+	background: #3498db;
+	border: 1px solid black;
 }
 
 .btn::before {
@@ -232,7 +238,7 @@ article.current {
 	height: 0%;
 	background: #3498db;
 	z-index: -1;
-	transition: 0.8s;
+	/* transition: 0.8s; */
 }
 
 .nav {
@@ -256,4 +262,65 @@ article button.closer {
 	margin: 0px;
 	padding: 0px;
 	opacity: inherit;
+}
+
+
+.myButton {
+	padding: 0;
+	font-size: 0;
+	border: none;
+}
+
+.signin_container {
+	float: right;
+}
+
+#drop-content {
+	position: absolute;
+	z-index: 1;
+	top: 52px;
+	right: 50px;
+	/* border-radius: 100%; */
+	/* border: 3px solid black; */
+
+}
+
+#drop-content a {
+	display: block;
+	font-size: 20px;
+	background: #53565d;
+	color: white;
+	text-decoration: none;
+	padding: 3px 30px;
+	margin-top: 0px;
+}
+
+#drop-content a:hover {
+	background: #111;
+	cursor: pointer;
+}
+
+.Dropdown-triangle {
+	/* display: inline-block; */
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #53565d;
+	position: absolute;
+	top: 1px;
+	right: 38px;
+}
+
+.dropdown__list {
+	margin-top: 11px;
+}
+
+li {
+	list-style-type: none;
+}
+
+#kelpie_logo {
+	position: block;
+	float: left;
+	height: 50px;
+	width: 50px
 }

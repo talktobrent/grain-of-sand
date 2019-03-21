@@ -6,6 +6,12 @@ $(document).ready(function () {
       $('#search').click();
     }
   });
+  $('button.btn1').click(function() {
+    $('button.switch').click()
+  })
+  $('button.btn2').click(function () {
+    $('button.closer').click()
+  })
   $('#search').click(function () {
     console.log(myhistory)
     console.log($('input').val());
@@ -58,6 +64,10 @@ $(document).ready(function () {
     }
   });
 });
+
+
+
+
 
 // Show hide menu
 function show_hide() {
