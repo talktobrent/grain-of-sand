@@ -25,7 +25,10 @@ $(document).ready(function () {
       if (past) {
         $(`#${string.split(' ').join('_')}`)
           .addClass('current')
-          .prependTo('section.history')
+          .css("display", "block")
+          .prependTo('section.history');
+          let marker = $(`#${string.split(' ').join('_')}`).data().marker
+          marker.setVisibility(true)
           $('article').not(`#${string.split(' ').join('_')}`).removeClass('current')
           let coords = { lat: $(`#${string.split(' ').join('_')}`).data().Latitude, lng: $(`#${string.split(' ').join('_')}`).data().Longitude - 0.075 }
           map.setCenter(coords);
@@ -35,6 +38,7 @@ $(document).ready(function () {
           console.log(data);
           if ($.type(data) !== "string") {
             Object.assign(data, {"query": string})
+            Object.assign(data, {"display": "block"})
             myhistory.push(data);
             console.log(myhistory)
             if (signedIn) {
@@ -64,25 +68,3 @@ function show_hide() {
     click.style.display = "none"
   }
 }
-
-
-const navTriggerEl = document.querySelector(".hamburger");
-const navEl = document.querySelector("nav");
-const contentEl = document.querySelector(".content");
-const hamburgerBarsEl = document.getElementsByTagName("span");
-
-function toggleNav() {
-  navTriggerEl.addEventListener("click", function () {
-    navEl.classList.toggle("open");
-    contentEl.classList.toggle("shift");
-    animateHamburgers();
-  });
-}
-
-function animateHamburgers() {
-  for (let item of hamburgerBarsEl) {
-    item.classList.toggle("change");
-  }
-}
-
-toggleNav();

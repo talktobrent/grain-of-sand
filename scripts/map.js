@@ -45,6 +45,9 @@ function plot (data) {
   let coords = { lat: data.Latitude, lng: data.Longitude };
   let marker = new H.map.Marker(coords);
   marker.setData(data.Words)
+  if (data.display === "none") {
+    marker.setVisibility(false);
+  }
   group.addObject(marker);
   if (data.WQ) {
     var text = data.Address;
@@ -61,21 +64,24 @@ function plot (data) {
   $('section.history').prepend(
     $('<article/>')
       .data(data)
+      .data({"marker": marker})
       .attr("id", data.query.split(' ').join('_'))
+      .css("display", data.display)
       .addClass('current')
       .append([
-        '<div class="closer"></div>',
+        '<button class="closer"></button>',
         '<p>' + text + '</p>',
         $('<button/>')
+          .addClass('switch')
           .text(button)
           .click(function () {
             $(this).parent().find('p').text(function () {
               if ($(this).parent().data().WQ) {
-                $(this).siblings('button').text('@');
+                $(this).siblings('button.switch').text('@');
                 $(this).parent().data().WQ = false;
                 return $(this).parent().data().Words;
               } else {
-                $(this).siblings('button').text('///');
+                $(this).siblings('button.switch').text('///');
                 $(this).parent().data().WQ = true;
                 return $(this).parent().data().Address;
               }
@@ -92,5 +98,21 @@ function plot (data) {
     $('article').not($(this)).removeClass('current')
   })
   $('article').slice(1).removeClass('current')
+  $('.closer').click(function () {
+    console.log("here")
+    $(this).parent().css("display", "none")
+    $(this).parent().data().display = "none";
+    let marker = $(this).parent().data().marker
+    marker.setVisibility(false)
+    if (signedIn) {
+      for (let x of myhistory) {
+        if (x.query === $(this).parent().data().query) {
+          x.display = "none";
+          break;
+        }
+      }
+      localStorage.setItem(key, JSON.stringify(myhistory));
+    }
+  });
   return coords;
 }
