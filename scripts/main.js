@@ -1,16 +1,25 @@
 
 $(document).ready(function () {
   console.log(myhistory)
+  $('#outdrop').click(function () {
+    $('#sign-out').click();
+    $('#drop-content').hide()
+  })
   $('input').on('keyup', function (e) {
     if (e.keyCode === 13) {
       $('#search').click();
     }
   });
   $('button.btn1').click(function() {
-    $('button.switch').click()
+    $('article:visible button.switch').click()
+    $('article.current').removeClass('current')
+    map.setCenter({lat: 50, lng: 5})
+    map.setZoom(1)
   })
   $('button.btn2').click(function () {
-    $('button.closer').click()
+    $('article:visible button.closer').click()
+    map.setCenter({lat: 50, lng: 5})
+    map.setZoom(1)
   })
   $('#search').click(function () {
     console.log(myhistory)

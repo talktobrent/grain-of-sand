@@ -46,12 +46,13 @@
     <script src="scripts/main.js"></script>
     <script src="scripts/oauth.js"></script>
 
-    <title>Addr3ss</title>
+    <title>GrainOfSand</title>
   </head>
 
   <body>
     <header>
       <img src="kelpie2.png" id="kelpie_logo" alt="logo">
+      <p><b>GrainOfSand</b> - <a href="https://what3words.com/about/">what3words</a>:  decoder / encoder
       <section class="signin">
         <div class="signin_container">
           <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -70,7 +71,7 @@
                   <li><a href="#">About</a></li>
                   <li><a href="#">My Tags</a></li>
                   <li><a href="#">Settings</a></li>
-                  <li><a href="#">SignOut</a></li>
+                  <li id="outdrop"><a href="#">SignOut</a></li>
                 </ul>
               </div>
             </div>
@@ -92,7 +93,7 @@
       <div id="map">
         <div class="search-container">
           <input id="searchbox" class="controls"" type="text"
-          placeholder="what3words, address, or landmark" name="search">
+          placeholder="what3words | address | landmark | location" name="search">
           <button id="search" type="button">
             <i class="fas fa-search"></i>
           </button>

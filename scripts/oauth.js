@@ -58,13 +58,18 @@ function onSignIn (googleUser) {
           console.log(myhistory)
           $('article').remove()
           for (let x of myhistory) {
-            if (!$(`#${x.query.split(' ').join('_')}`).length) {
-              last = plot(x)
+            last = plot(x)
+            if (x.display !== 'block') {
+              last = { lat: 50, lng: 5 }
+              zoom = 1;
+            }
+            else {
+              last.lng -= 0.075
+              zoom = 12;
             }
           }
-          last.lng -= 0.075
           map.setCenter(last);
-          map.setZoom(12);
+          map.setZoom(zoom);
         } else {
           localStorage.setItem(key, JSON.stringify(myhistory))
         }
