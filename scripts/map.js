@@ -14,7 +14,7 @@ var defaultLayers = platform.createDefaultLayers({
 var map = new H.Map(document.getElementById('map'),
   defaultLayers.normal.map, {
     center: { lat: 50, lng: 5 },
-    zoom: 1,
+    zoom: 3,
     pixelRatio: pixelRatio
   });
 

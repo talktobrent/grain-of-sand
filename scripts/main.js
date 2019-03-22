@@ -14,12 +14,12 @@ $(document).ready(function () {
     $('article:visible button.switch').click()
     $('article.current').removeClass('current')
     map.setCenter({lat: 50, lng: 5})
-    map.setZoom(1)
+    map.setZoom(3)
   })
   $('button.btn2').click(function () {
     $('article:visible button.closer').click()
     map.setCenter({lat: 50, lng: 5})
-    map.setZoom(1)
+    map.setZoom(3)
   })
   $('#search').click(function () {
     console.log(myhistory)

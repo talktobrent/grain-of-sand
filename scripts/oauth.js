@@ -61,7 +61,7 @@ function onSignIn (googleUser) {
             last = plot(x)
             if (x.display !== 'block') {
               last = { lat: 50, lng: 5 }
-              zoom = 1;
+              zoom = 3;
             }
             else {
               last.lng -= 0.075
