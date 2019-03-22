@@ -104,15 +104,13 @@ function plot (data) {
     $(this).parent().data().display = "none";
     let marker = $(this).parent().data().marker
     marker.setVisibility(false)
-    if (signedIn) {
-      for (let x of myhistory) {
-        if (x.query === $(this).parent().data().query) {
-          x.display = "none";
-          break;
-        }
+    for (let x of myhistory) {
+      if (x.query === $(this).parent().data().query) {
+        x.display = "none";
+        break;
       }
-      localStorage.setItem(key, JSON.stringify(myhistory));
     }
+    localStorage.setItem(key, JSON.stringify(myhistory));
   });
   return coords;
 }
