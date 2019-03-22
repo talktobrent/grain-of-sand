@@ -49,7 +49,7 @@ $(document).ready(function () {
           map.setCenter(coords);
           map.setZoom(12);
       } else {
-        $.getJSON('http://0.0.0.0:5000/api/' + string, function (data) {
+        $.getJSON('http://grainofsand.online/api/' + string, function (data) {
           console.log(data);
           if ($.type(data) !== "string") {
             Object.assign(data, {"query": string})

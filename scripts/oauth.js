@@ -22,7 +22,7 @@ function signOut () {
 
 function onSignIn (googleUser) {
   var profile = googleUser.getBasicProfile();
-  const url = 'http://0.0.0.0:5000/api/verify';
+  const url = 'http://grainofsand.online/api/verify';
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
